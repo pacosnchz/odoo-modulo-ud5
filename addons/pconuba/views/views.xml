@@ -1,0 +1,136 @@
+<odoo>
+  <data>
+
+    <!-- Vista lista alumnos -->
+    <record model="ir.ui.view" id="pconuba.alumno_list">
+      <field name="name">alumno list</field>
+      <field name="model">pconuba.alumno</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="email"/>
+          <field name="telefono"/>
+          <field name="fecha_inicio"/>
+          <field name="fecha_fin"/>
+          <field name="centro_id"/>
+          <field name="activo"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista formulario alumnos -->
+    <record model="ir.ui.view" id="pconuba.alumno_form">
+      <field name="name">alumno form</field>
+      <field name="model">pconuba.alumno</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group string="Datos personales">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="telefono"/>
+              </group>
+              <group string="Prácticas">
+                <field name="fecha_inicio"/>
+                <field name="fecha_fin"/>
+                <field name="centro_id"/>
+                <field name="activo"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Tareas">
+                <field name="tarea_ids">
+                  <tree>
+                    <field name="name"/>
+                    <field name="responsable"/>
+                    <field name="estado"/>
+                    <field name="fecha"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Vista búsqueda alumnos -->
+    <record model="ir.ui.view" id="pconuba.alumno_search">
+      <field name="name">alumno search</field>
+      <field name="model">pconuba.alumno</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="centro_id"/>
+          <filter name="activos" string="Activos" domain="[('activo','=',True)]"/>
+          <filter name="inactivos" string="Inactivos" domain="[('activo','=',False)]"/>
+          <group expand="0" string="Agrupar por">
+            <filter name="grupo_centro" string="Centro" context="{'group_by': 'centro_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <!-- Acción alumnos -->
+    <record model="ir.actions.act_window" id="pconuba.action_alumno">
+      <field name="name">Alumnos en prácticas</field>
+      <field name="res_model">pconuba.alumno</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Vista lista tareas -->
+    <record model="ir.ui.view" id="pconuba.tarea_list">
+      <field name="name">tarea list</field>
+      <field name="model">pconuba.tarea</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="alumno_id"/>
+          <field name="responsable"/>
+          <field name="estado"/>
+          <field name="fecha"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Vista formulario tareas -->
+    <record model="ir.ui.view" id="pconuba.tarea_form">
+      <field name="name">tarea form</field>
+      <field name="model">pconuba.tarea</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="alumno_id"/>
+              <field name="responsable"/>
+              <field name="estado"/>
+              <field name="fecha"/>
+            </group>
+            <group string="Notas">
+              <field name="notas" nolabel="1"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Acción tareas -->
+    <record model="ir.actions.act_window" id="pconuba.action_tarea">
+      <field name="name">Tareas</field>
+      <field name="res_model">pconuba.tarea</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menús -->
+    <menuitem name="PcOnuba" id="pconuba.menu_root"/>
+    <menuitem name="Alumnos" id="pconuba.menu_alumnos"
+              parent="pconuba.menu_root"
+              action="pconuba.action_alumno"/>
+    <menuitem name="Tareas" id="pconuba.menu_tareas"
+              parent="pconuba.menu_root"
+              action="pconuba.action_tarea"/>
+
+  </data>
+</odoo>

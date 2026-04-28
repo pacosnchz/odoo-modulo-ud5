@@ -1,0 +1,68 @@
+<odoo>
+  <data>
+
+    <!-- Centro educativo -->
+    <record id="centro_marisma" model="res.partner">
+      <field name="name">IES La Marisma</field>
+      <field name="city">Huelva</field>
+      <field name="country_id" ref="base.es"/>
+    </record>
+
+    <!-- Alumnos -->
+    <record id="alumno_paco" model="pconuba.alumno">
+      <field name="name">Paco Sánchez</field>
+      <field name="email">paco@ieslamarisma.es</field>
+      <field name="telefono">600111222</field>
+      <field name="fecha_inicio">2026-01-10</field>
+      <field name="fecha_fin">2026-05-10</field>
+      <field name="centro_id" ref="centro_marisma"/>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="alumno_valentin" model="pconuba.alumno">
+      <field name="name">Valentín</field>
+      <field name="email">valentin@ieslamarisma.es</field>
+      <field name="telefono">600333444</field>
+      <field name="fecha_inicio">2026-01-10</field>
+      <field name="fecha_fin">2026-05-10</field>
+      <field name="centro_id" ref="centro_marisma"/>
+      <field name="activo">True</field>
+    </record>
+
+    <record id="alumno_vito" model="pconuba.alumno">
+      <field name="name">Vito</field>
+      <field name="email">vito@ieslamarisma.es</field>
+      <field name="telefono">600555666</field>
+      <field name="fecha_inicio">2026-01-10</field>
+      <field name="fecha_fin">2026-05-10</field>
+      <field name="centro_id" ref="centro_marisma"/>
+      <field name="activo">True</field>
+    </record>
+
+    <!-- Tareas -->
+    <record id="tarea_1" model="pconuba.tarea">
+      <field name="name">Reparación de equipo cliente</field>
+      <field name="alumno_id" ref="alumno_paco"/>
+      <field name="responsable">samuel</field>
+      <field name="estado">en_curso</field>
+      <field name="fecha">2026-02-15</field>
+    </record>
+
+    <record id="tarea_2" model="pconuba.tarea">
+      <field name="name">Instalación de red WiFi</field>
+      <field name="alumno_id" ref="alumno_valentin"/>
+      <field name="responsable">javier</field>
+      <field name="estado">pendiente</field>
+      <field name="fecha">2026-02-20</field>
+    </record>
+
+    <record id="tarea_3" model="pconuba.tarea">
+      <field name="name">Soporte técnico remoto</field>
+      <field name="alumno_id" ref="alumno_vito"/>
+      <field name="responsable">carolina</field>
+      <field name="estado">completada</field>
+      <field name="fecha">2026-02-10</field>
+    </record>
+
+  </data>
+</odoo>
